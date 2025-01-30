@@ -1,5 +1,6 @@
 from pathlib import Path
 import sys
+import string
 
 
 # Dette er start-koden til den første programmeringsoppgave i ING 301
@@ -19,9 +20,20 @@ def read_file(file_name):
     # Tips: kanksje "open"-funksjonen kunne være nyttig her: https://docs.python.org/3/library/functions.html#open
     #return NotImplemented  # TODO: Du må erstatte denne linjen
 
-    with open(file_name) as file:
-        result = [linje.strip() for linje in file] # bruker file direkte istedenfor udefinert variabel
+    file = open(file_name)
+    result = []
+    innhold = file.read()
+    linjer = innhold.split("\n")
+    for linje in linjer:
+        result.append(linje)
     return result
+
+    #with open(file_name) as file:
+    #    result = [linje.strip() for linje in file] # bruker file direkte istedenfor udefinert variabel
+   # return result
+
+   
+
 
     
     
@@ -33,7 +45,8 @@ def read_file(file_name):
 def lines_to_words(lines):
     """
     Denne funksjonen får en liste med strenger som input (dvs. linjene av tekstfilen som har nettopp blitt lest inn)
-    og deler linjene opp i enkelte ord. Enhver linje blir delt opp der det er blanktegn (= whitespaces).
+    og deler linjene opp i enkelte ord. 
+    Enhver linje blir delt opp der det er blanktegn (= whitespaces).
     Desto videre er vi bare interessert i faktiske ord, dvs. alle punktum (.), kolon (:), semikolon (;),
     kommaer (,), spørsmåls- (?) og utråbstegn (!) skal fjernes underveis.
     Til sist skal alle ord i den resulterende listen være skrevet i små bokstav slik at "Odin" og "odin"
@@ -45,7 +58,25 @@ def lines_to_words(lines):
     # Tips: se på "split()"-funksjonen https://docs.python.org/3/library/stdtypes.html#str.split
     # i tillegg kan "strip()": https://docs.python.org/3/library/stdtypes.html#str.strip
     # og "lower()": https://docs.python.org/3/library/stdtypes.html#str.lower være nyttig
-    return NotImplemented  # TODO: Du må erstatte denne linjen
+    # return NotImplemented  # TODO: Du må erstatte denne linjen
+
+    remove_chars = str.maketrans('', "", string.punctuation)
+
+    words = []
+    for line in lines:
+        # Deler linjen i ord og fjærner spesifikke tegn
+        for word in line.split():
+            word = word.translate(remove_chars).lower()
+            if word:
+                words.append(word)
+    return words
+    
+
+
+
+
+
+
 
 
 def compute_frequency(words):
