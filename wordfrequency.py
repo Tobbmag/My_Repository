@@ -20,25 +20,19 @@ def read_file(file_name):
     # Tips: kanksje "open"-funksjonen kunne være nyttig her: https://docs.python.org/3/library/functions.html#open
     #return NotImplemented  # TODO: Du må erstatte denne linjen
 
-    file = open(file_name)
-    result = []
-    innhold = file.read()
-    linjer = innhold.split("\n")
-    for linje in linjer:
-        result.append(linje)
+    with open(file_name,"r",encoding='utf-8') as file: # måtte endre til with open fordi det lukker filen på bedre måte og håndterer bokstaver som å
+        result = [linje.strip() for linje in file]
     return result
 
-    #with open(file_name) as file:
-    #    result = [linje.strip() for linje in file] # bruker file direkte istedenfor udefinert variabel
-   # return result
-
-   
-
-
-    
-    
-    
-
+    # Gammel testkode 
+    # file = open(file_name) # åpne filen
+    # result = [] 
+    # innhold = file.read() # lese hele filinnholdet
+    # linjer = innhold.split("\n") # del innholdet i linjer
+    # for linje in linjer: # legger hver linje i en liste
+    #     result.append(linje)
+    # file.close()
+    # return result # returnerer resultatet
     
 
 
@@ -60,24 +54,17 @@ def lines_to_words(lines):
     # og "lower()": https://docs.python.org/3/library/stdtypes.html#str.lower være nyttig
     # return NotImplemented  # TODO: Du må erstatte denne linjen
 
-    remove_chars = str.maketrans('', "", string.punctuation)
+    remove_chars = str.maketrans('', "", string.punctuation) #  genererer tabell som fjerner nødvendig tegnsetting
 
     words = []
-    for line in lines:
+    for line in lines: # itererer gjennom hver linje
         # Deler linjen i ord og fjærner spesifikke tegn
-        for word in line.split():
-            word = word.translate(remove_chars).lower()
-            if word:
+        for word in line.split(): # deler linjen i ord
+            word = word.translate(remove_chars).lower() # fjerner tegnsetting og små bokstaver
+            if word: # skjekker om et ord er tomt
                 words.append(word)
-    return words
+    return words # returnerer ord
     
-
-
-
-
-
-
-
 
 def compute_frequency(words):
     """
@@ -87,7 +74,16 @@ def compute_frequency(words):
 
     F. eks. Inn ["hun", "hen", "han", "hen"], Ut: {"hen": 2, "hun": 1, "han": 1}
     """
-    return NotImplemented  # TODO: Du må erstatte denne linjen
+    # return NotImplemented  # TODO: Du må erstatte denne linjen
+
+    freq_table = {}
+
+    for word in words:
+        if word in freq_table:
+             freq_table[word] += 1
+        else:
+            freq_table[word] = 1
+    return freq_table
 
 
 FILL_WORDS = ['og', 'dei', 'i', 'eg', 'som', 'det', 'han', 'til', 'skal', 'på', 'for', 'då', 'ikkje', 'var', 'vera']
