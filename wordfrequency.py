@@ -17,7 +17,17 @@ def read_file(file_name):
     tilbake en liste av tekststrenger som representerer linjene i filen.
     """
     # Tips: kanksje "open"-funksjonen kunne være nyttig her: https://docs.python.org/3/library/functions.html#open
-    return NotImplemented  # TODO: Du må erstatte denne linjen
+    #return NotImplemented  # TODO: Du må erstatte denne linjen
+
+    with open(file_name) as file:
+        result = [linje.strip() for linje in file] # bruker file direkte istedenfor udefinert variabel
+    return result
+
+    
+    
+    
+
+    
 
 
 def lines_to_words(lines):
