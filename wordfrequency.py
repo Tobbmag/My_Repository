@@ -97,9 +97,12 @@ def remove_filler_words(frequency_table):
     Målet med denne funksjonen er at den skal få en frekvenstabll som input og så fjerne alle fyll-ord
     som finnes i FILL_WORDS.
     """
-    return NotImplemented  # TODO: Du må erstatte denne linjen
-
-
+    # return NotImplemented  # TODO: Du må erstatte denne linjen
+    
+    resultat = [element for element in frequency_table if element not in FILL_WORDS]
+    # print(resultat) -- test underveis
+    return resultat
+    
 def largest_pair(par_1, par_2):
     """
     Denne funksjonen får som input to tupler/par (https://docs.python.org/3/library/stdtypes.html#tuple) der den
@@ -109,7 +112,14 @@ def largest_pair(par_1, par_2):
     """
     # OBS: Tenk også på situasjonen når to tall er lik! Vurder hvordan du vil handtere denne situasjonen
     # kanskje du vil skrive noen flere test metoder ?!
-    return NotImplemented  # TODO: Du må erstatte denne linjen
+    # return NotImplemented  # TODO: Du må erstatte denne linjen
+    
+    par_1 = (string,int)
+    par_2 = (string,int)
+    
+    print(par_1)
+    print(par_2)
+    
 
 
 def find_most_frequent(frequency_table):
