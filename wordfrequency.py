@@ -113,13 +113,13 @@ def largest_pair(par_1, par_2):
     # OBS: Tenk også på situasjonen når to tall er lik! Vurder hvordan du vil handtere denne situasjonen
     # kanskje du vil skrive noen flere test metoder ?!
     # return NotImplemented  # TODO: Du må erstatte denne linjen
-    
-    par_1 = (string,int)
-    par_2 = (string,int)
-    
-    print(par_1)
-    print(par_2)
-    
+
+    if (par_1[1]) > (par_2[1]):
+        return par_1
+    elif(par_1[1] < par_2[1]):
+        return par_2
+    else:
+        return [par_1, par_2] # returnerer begge to som en liste
 
 
 def find_most_frequent(frequency_table):
@@ -129,7 +129,34 @@ def find_most_frequent(frequency_table):
     """
     # Tips: se på "dict.items()" funksjonen (https://docs.python.org/3/library/stdtypes.html#dict.items)
     # og kanskje du kan gjenbruke den "largest_pair" metoden som du nettopp har laget
-    return NotImplemented  # TODO: Du må erstatte denne linjen
+    # return NotImplemented  # TODO: Du må erstatte denne linjen
+
+    if not frequency_table: # skjekker om det er innhold i tabellen
+        return None
+    
+
+    # Finner ordet som forekommer flest ganger
+    Mest_vanlig_ord = ""
+    mest_Vanlig_ant = 0
+
+    for word, frequency in frequency_table.items(): # bruker komma for å pakke ut tupler
+        if frequency > mest_Vanlig_ant:
+            Mest_vanlig_ord  = word
+            mest_Vanlig_ant = frequency
+
+    return Mest_vanlig_ord
+    
+
+
+   
+
+
+
+   
+
+
+    
+    
 
 
 ############################################################
