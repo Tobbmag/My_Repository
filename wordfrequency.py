@@ -99,8 +99,11 @@ def remove_filler_words(frequency_table):
     """
     # return NotImplemented  # TODO: Du må erstatte denne linjen
     
-    resultat = [element for element in frequency_table if element not in FILL_WORDS]
-    # print(resultat) -- test underveis
+    if not frequency_table: # skjekker at det er innhold
+        return None
+    
+    resultat = {word: freq for word, freq in frequency_table.items() if word not in FILL_WORDS}
+    print(resultat) 
     return resultat
     
 def largest_pair(par_1, par_2):
@@ -145,17 +148,6 @@ def find_most_frequent(frequency_table):
             mest_Vanlig_ant = frequency
 
     return Mest_vanlig_ord
-    
-
-
-   
-
-
-
-   
-
-
-    
     
 
 
